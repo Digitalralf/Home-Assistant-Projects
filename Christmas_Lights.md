@@ -139,6 +139,8 @@ To get datapoints from the device do the following:
 The entire reason for this project is that I have cheap smart christmas light from the dutch store action.
 They have undocumented datapoint. For this device the output  of the script above looks something like this:
 
-```zsh
-
+```bash
+$ getinfo.py
+Device status {'devId': 'DEVICE_ID', 'dps': {'20': True, '101': 'Color', '102': 'Stream'}, 't': 577}
+Available DPS{'20': None, '101': None, '102': None}
 ```
