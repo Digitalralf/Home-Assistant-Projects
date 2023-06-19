@@ -16,7 +16,7 @@ Tuya is chinese manufacturer which makes a lot of smarthome equipment. A lot of 
 
 ## Tuya chips
 
-Quite a while a ago tuya devices switched from using ESP based chips to their own produced chips. This makes it impossible to flash existing devices with for example an ESPHome solution. Instead of just changing the chip, this post aims to get to a solution without changing any hardware and controlling the existing Tuya firmware from software locally without a cloud solution
+Quite a while ago Tuya devices switched from using ESP based chips to their own produced chips. This makes it impossible to flash existing devices with for example an ESPHome solution. Instead of just changing the chip, this post aims to get to a solution without changing any hardware and controlling the existing Tuya firmware from software locally without a cloud solution
 
 ## Local Tuya/ Tuya intergration
 
@@ -36,8 +36,8 @@ In this guide several tools are used to extract keys, determining datapoints and
 | Node-Red Companion    | Reading entities           | No          | HACS: https://github.com/zachowj/hass-node-red
 | Hass-virtual          | Creating an entity in HA   | No          | HACS: https://github.com/twrecked/hass-virtual
 | Node-Red Tuya node    | Controlling Tuya Devices   | No          | Node-Red Settings: https://flows.nodered.org/node/node-red-contrib-tuya-smart-device
-| Python3               | Installing Tiny Tuya       | Yes         | Website: https://www.python.org/downloads/
-| TinyTuya              | Testing Datapoints         | Yes         | Can be instaled using `pip install tinytuya`, More info: https://pypi.org/project/tinytuya/
+| Python3               | Installing Tiny Tuya       | No          | Website: https://www.python.org/downloads/
+| TinyTuya              | Testing Datapoints         | No          | Can be instaled using `pip install tinytuya`, More info: https://pypi.org/project/tinytuya/
 | Smartlife 3.6.1 app   | Extracting Tuya keys       | Yes         | APK-Mirror: https://www.apkmirror.com/apk/volcano-technology-limited/smart-life-smart-living/smart-life-smart-living-3-6-1-release/smart-life-smart-living-3-6-1-android-apk-download/
 | Bluestacks 5          | Extracting Tuya keys       | Yes         | Website: https://www.bluestacks.com/ Can also be downloaded from the bstweaker site.
 | Bluestacks Tweaker    | Extracting Tuya keys       | Yes         | Website: https://bstweaker.tk/ (select download 2)
@@ -61,16 +61,14 @@ Hass-Virtual is a custom integration and can be used to make fake entities in ho
 The Node module name is: `node-red-contrib-tuya-smart-device` and can be installed in the node-red settings by putting the module name into `npm_packages`
 This is a node that gives access to the tuya device by specifying the id, key and ip address of the devices. With this node datapoints can be set using flows.
 
+### Python3
+For using TinyTuya is a python library. For Windows you can download from the [website](https://www.python.org/downloads/). For linux you can use the package manager of your distro. Fo mac you can use `brew` or `macports`
+
+### TinyTuya
+TinyTuya is a python library and can be used for controlling python devices. It can be installed using the python package manager: Pip. To install TinyTuya use the command: `pip install tinytuya`
 
 ## Optional Components
 The following tools are used for retrieving tuya keys and getting the datapoints. There are also other ways to get the tuya keys that with tuya local. This however involves creating a user account on the Tuya Developer website. Datapoints can also be found and set using Tuya Local, however I didn't find this intuitive.
-
-
-### Python3
-For using TinyTuya is a python library. For Windows you can download from the [website](https://www.python.org/downloads/). For linux you can use the package manager of your distro
-
-### TinyTuya
-TinyTuya is a python library and can be used for controlling python devices. It can be installed using the python package manager: Pip. To install TinyTuya use the command:`pip install tinytuya`
 
 ### Smartlife 3.6.1 app
 The Smartlife app is a clone of the tuya application. This specific version of the app contains a bug which dumps the local keys of the device when connecting the device to the app. However to get these keys it requires you to have a rooted android device since that part of storage is inaccessible.
@@ -108,4 +106,39 @@ I will give a short summary here for the sake of having some written steps. I pr
 
 Tuya devices use datapoints this means that there is a number with a corresponding value. That value can be a number a string or anything device specific.
 To get the datapoints we use TinyTuya to read out the state of the device. By doing this we get 
-For this step we are going to use TinyTuya and the smarlife app we installed earlier.
+For this step we are going to use TinyTuya and the smartlife app we installed earlier.
+
+Once TinyTuya is installed you should use `python -m tinytuya scan` to scan for devices. Don't actively connect to the device at that moment with the smartlife app. If it is not picked up try to powercycle the device without using the smartlife app.
+
+When you have found the device and write down the `Device ID` and `IP Address`. We will need them for the next step including with the local key we found earlier.
+
+To get the datapoints we have to use a python script like this:
+
+```python
+import tinytuya
+
+device = tinytuya.Device('DEVICE_ID', 'IP_ADDRESS', 'LOCAL_KEY')
+device.set_version(TUYA_VERSION)
+status = device.status()
+dps = device.detect_available_dps() 
+print('Device status: %r\n' % data)
+print('DPS Availible: %r\n' % data))
+
+```
+This script is also available from my github page. ....
+
+To get datapoints from the device do the following:
+
+1. Open the smartlife app and turn on the device
+2. Close the app
+3. Run the python script
+4. Repeatedly run the script with cycling through all the settings that are available for the device
+5. Write down every setting that is possible for every datapoint.
+
+## Example LSC Christmas lights
+The entire reason for this project is that I have cheap smart christmas light from the dutch store action.
+They have undocumented datapoint. For this device the output  of the script above looks something like this:
+
+```zsh
+
+```
