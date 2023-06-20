@@ -1,10 +1,8 @@
 # Controlling Tuya devices locally using Node-Red
 
 This post is written as part of an assignment for the HAN University of Applied Sciences. This is also part of a few other guides I am posting.
-Other guides can be found here:
-
-Two Zigbee Networks Joined over a wireguard VPN: `TBD`
-
+Other guides can be found here:\
+Two Zigbee Networks Joined over a wireguard VPN: `TBD`\
 Connecting long range sensors using LoRa and MQTT:`TBD`
 
 This guide presumes that you have some basic knowledge of using Home-Assistant and that Home-Assistant is already installed. I am not liable for broken devices, broken configuration, thermonuclear war or ANYTHING ELSE. This guide is provided as is. Nonetheless I hope you find it interesting :D
@@ -92,9 +90,7 @@ One way to get the keys is to create a Tuya Developer account and couple the dev
 
 ## Method 2
 
-Another method is to use the Smartlife 3.6.1 app on a rooted android device. This method is described by **Mark Watt Tech** in his youtube video which can be found [here](https://www.youtube.com/watch?v=YKvGYXw-_cE). It does require you to create a (throwaway) smartlife account.
-
-
+Another method is to use the Smartlife 3.6.1 app on a rooted android device. This method is described by **Mark Watt Tech** in his youtube video which can be found [here](https://www.youtube.com/watch?v=YKvGYXw-_cE). It does require you to create a (throwaway) smartlife account.\
 I will give a short summary here for the sake of having some written steps. I presume you use a windows machine with BlueStacks and BlueStack Tweaker already installed
 
 1. Install the Smartlife 3.6.1 apk inside bluestacks and the smartlife app on your phone.
@@ -115,8 +111,7 @@ For this step we are going to use TinyTuya and the smartlife app we installed ea
 
 Look at the prerequisites for installing TinyTuya. Once TinyTuya is installed you should use `python -m tinytuya scan` to scan for devices. Don't actively connect to the device at that moment with the smartlife app. If it is not picked up try to powercycle the device without using the smartlife app.
 
-When you have found the device write down the `Device ID` and `IP Address`. We will need them for the next step including with the local key we found earlier.
-
+When you have found the device write down the `Device ID` and `IP Address`. We will need them for the next step including with the local key we found earlier.\
 To get the datapoints we have to use a python script like this:
 
 ```python
@@ -195,21 +190,17 @@ This creates an entity inside Home Assistant after a restart
 
 # Step 4 - Node-Red Flow
 
-This step is very specific to your application and device that you are using. Atleast two nodes are required to hook up the virtual device and the tuya device. For getting the data from virtual device the `state node` is required. For controlling the tuya device `tuya-smart-device node` is required. 
-
-The state node requires the virtual device entity to which should be filled in the `Entity` field.
-
+This step is very specific to your application and device that you are using. Atleast two nodes are required to hook up the virtual device and the tuya device. For getting the data from virtual device the `state node` is required. For controlling the tuya device `tuya-smart-device node` is required. \
+The state node requires the virtual device entity to which should be filled in the `Entity` field.\
 The tuya node requires the `Device ID` or `IP Address` and the `Local Key` from earlier.
 
 ## Example 
 The flow for my christmas lights can be found on my github page [here](https://github.com/Digitalralf/Home-Assistant-Projects/blob/main/Node-Red%20Tuya%20Devices/Node-Red%20Flow/Christmas_Lights.json)
 
-My Flow looks like this:
-
+My Flow looks like this:\
 ![Christmas Lights Flow](./Pics/Flow.png)
 
-A brief explanation for my christmas lights is as follows:
-
+A brief explanation for my christmas lights is as follows:\
 1. The data is extracted from the virtual device.
 2. RGB colordata is translated to the datapoint settings
     - For example a red value above 200 sets datapoint `101` to `R`, the same applies for green and blue
