@@ -1,0 +1,364 @@
+[
+    {
+        "id": "8771821ea35cd371",
+        "type": "tab",
+        "label": "Christmas Ligths Better",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "129985b10efb54fc",
+        "type": "trigger-state",
+        "z": "8771821ea35cd371",
+        "name": "Christmas Light",
+        "server": "f6c9ee5f.52efe",
+        "version": 2,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityid": "light.virtual_christmas_lights",
+        "entityidfiltertype": "exact",
+        "debugenabled": false,
+        "constraints": [
+            {
+                "targetType": "this_entity",
+                "targetValue": "",
+                "propertyType": "current_state",
+                "propertyValue": "new_state.state",
+                "comparatorType": "is",
+                "comparatorValueDatatype": "str",
+                "comparatorValue": ""
+            }
+        ],
+        "inputs": 1,
+        "outputs": 2,
+        "customoutputs": [],
+        "outputinitially": false,
+        "state_type": "str",
+        "enableInput": true,
+        "x": 120,
+        "y": 260,
+        "wires": [
+            [],
+            [
+                "a19d60991540a24c",
+                "533d6bd5a35ad3cd",
+                "86b09a8fd2a020bd",
+                "26c4742871f64075"
+            ]
+        ]
+    },
+    {
+        "id": "a19d60991540a24c",
+        "type": "function",
+        "z": "8771821ea35cd371",
+        "name": "",
+        "func": "msg.topic = \"20\"\nif(msg.data.event.new_state.state == \"on\")\n{\n    msg.payload = true\n}\nif(msg.data.event.new_state.state == \"off\")\n{\n    msg.payload = false\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 180,
+        "wires": [
+            [
+                "6cf5187d1abfb4f6"
+            ]
+        ]
+    },
+    {
+        "id": "6cf5187d1abfb4f6",
+        "type": "rbe",
+        "z": "8771821ea35cd371",
+        "name": "",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "septopics": false,
+        "property": "msg.payload",
+        "topi": "topic",
+        "x": 490,
+        "y": 180,
+        "wires": [
+            [
+                "162a6ff13d5d5244"
+            ]
+        ]
+    },
+    {
+        "id": "8c98706f67c74e12",
+        "type": "debug",
+        "z": "8771821ea35cd371",
+        "name": "Filtered",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 960,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "533d6bd5a35ad3cd",
+        "type": "function",
+        "z": "8771821ea35cd371",
+        "name": "",
+        "func": "msg.topic = \"101\"\nvar color = \"\"\n\nvar rgb_color = msg.data.event.new_state.attributes.rgb_color\nvar hs_color = msg.data.event.new_state.attributes.hs_color\nif(!rgb_color || !hs_color)\n{\n    return\n}\nif(rgb_color[0] > 200)\n{\n    color += 'R'\n}\nif(rgb_color[1] > 200)\n{\n    color += 'G'\n}\nif(rgb_color[2] > 200)\n{\n    color += 'B'\n}\nif(hs_color[1] > 15 && hs_color[1] < 85)\n{\n    color = \"Color\"\n}\nmsg.payload = color\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 260,
+        "wires": [
+            [
+                "c03731176dbb02b7"
+            ]
+        ]
+    },
+    {
+        "id": "c03731176dbb02b7",
+        "type": "rbe",
+        "z": "8771821ea35cd371",
+        "name": "",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "septopics": false,
+        "property": "msg.payload",
+        "topi": "topic",
+        "x": 490,
+        "y": 260,
+        "wires": [
+            [
+                "162a6ff13d5d5244"
+            ]
+        ]
+    },
+    {
+        "id": "162a6ff13d5d5244",
+        "type": "join",
+        "z": "8771821ea35cd371",
+        "name": "",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "0.001",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 650,
+        "y": 260,
+        "wires": [
+            [
+                "1519fa52b8ba6cac"
+            ]
+        ]
+    },
+    {
+        "id": "86b09a8fd2a020bd",
+        "type": "function",
+        "z": "8771821ea35cd371",
+        "name": "",
+        "func": "msg.topic = \"102\"\nvar effect = msg.data.event.new_state.attributes.effect\nif(!effect)\n{\n    return;\n}\nmsg.payload = effect;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 340,
+        "wires": [
+            [
+                "c8058f32c7015c89"
+            ]
+        ]
+    },
+    {
+        "id": "c8058f32c7015c89",
+        "type": "rbe",
+        "z": "8771821ea35cd371",
+        "name": "",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "septopics": false,
+        "property": "msg.payload",
+        "topi": "topic",
+        "x": 490,
+        "y": 340,
+        "wires": [
+            [
+                "162a6ff13d5d5244"
+            ]
+        ]
+    },
+    {
+        "id": "1519fa52b8ba6cac",
+        "type": "function",
+        "z": "8771821ea35cd371",
+        "name": "",
+        "func": "var incomingData=msg.payload\n\nvar payloadData =\n{\n    multiple:true,\n    data:incomingData,\n}\nmsg.payload = payloadData\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 800,
+        "y": 260,
+        "wires": [
+            [
+                "8c98706f67c74e12",
+                "108becc8923deb44"
+            ]
+        ]
+    },
+    {
+        "id": "b665c593bb39b3ad",
+        "type": "catch",
+        "z": "8771821ea35cd371",
+        "name": "",
+        "scope": [
+            "108becc8923deb44"
+        ],
+        "uncaught": false,
+        "x": 830,
+        "y": 200,
+        "wires": [
+            [
+                "fcb33b24c330111d"
+            ]
+        ]
+    },
+    {
+        "id": "fcb33b24c330111d",
+        "type": "debug",
+        "z": "8771821ea35cd371",
+        "name": "Error",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1010,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "26c4742871f64075",
+        "type": "debug",
+        "z": "8771821ea35cd371",
+        "name": "Test",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "data.event",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 330,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "108becc8923deb44",
+        "type": "tuya-smart-device",
+        "z": "8771821ea35cd371",
+        "deviceName": "Christmas Lights",
+        "disableAutoStart": false,
+        "deviceId": "13681632c44f33e1bfe5",
+        "deviceKey": "90a0cb9a9fc570cd",
+        "storeAsCreds": false,
+        "deviceIp": "192.168.1.10",
+        "retryTimeout": "2000",
+        "findTimeout": "4000",
+        "tuyaVersion": "3.3",
+        "eventMode": "event-both",
+        "x": 990,
+        "y": 260,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "e7053dbfd4f39a42",
+        "type": "inject",
+        "z": "8771821ea35cd371",
+        "name": "",
+        "props": [
+            {
+                "p": "reset",
+                "v": "true",
+                "vt": "bool"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 330,
+        "y": 140,
+        "wires": [
+            [
+                "c8058f32c7015c89",
+                "6cf5187d1abfb4f6",
+                "c03731176dbb02b7"
+            ]
+        ]
+    },
+    {
+        "id": "f6c9ee5f.52efe",
+        "type": "server",
+        "name": "Home Assistant",
+        "version": 5,
+        "addon": true,
+        "rejectUnauthorizedCerts": true,
+        "ha_boolean": "y|yes|true|on|home|open",
+        "connectionDelay": true,
+        "cacheJson": true,
+        "heartbeat": false,
+        "heartbeatInterval": 30,
+        "areaSelector": "friendlyName",
+        "deviceSelector": "friendlyName",
+        "entitySelector": "friendlyName",
+        "statusSeparator": "at: ",
+        "statusYear": "hidden",
+        "statusMonth": "short",
+        "statusDay": "numeric",
+        "statusHourCycle": "h23",
+        "statusTimeFormat": "h:m",
+        "enableGlobalContextStore": true
+    }
+]

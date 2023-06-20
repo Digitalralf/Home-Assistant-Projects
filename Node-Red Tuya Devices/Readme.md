@@ -3,26 +3,25 @@
 This post is written as part of an assignment for the HAN University of Applied Sciences. This is also part of a few other guides I am posting.
 Other guides can be found here:
 
-Bridging Two networks to using WireGuard and OpenWRT: `TBD`
+Two Zigbee Networks Joined over a wireguard VPN: `TBD`
 
-Connecting longrange sensors using LoRa and MQTT:`TBD`
+Connecting long range sensors using LoRa and MQTT:`TBD`
 
 This guide presumes that you have some basic knowledge of using Home-Assistant and that Home-Assistant is already installed. I am not liable for broken devices, broken configuration, thermonuclear war or ANYTHING ELSE. This guide is provided as is. Nonetheless I hope you find it interesting :D
 
 # Introduction
 
+A long time ago, once close to christmas I bought LSC chirstmas ligths in the hope I could connect them to my Home Assistant installation, however this turned out to be quite challenging. I have compiled everything I learned from that experience in this guide and used the christmas lights as an example.
+
 ## Tuya
-Tuya is chinese manufacturer which makes a lot of smarthome equipment. A lot of cheap smarthome equipment is based on Tuya devices. For example in the Netherlands devices from the Lidl and Action almost always use Tuya Devices exclusively. The Lidl and Action smarthome apps are also based on the Tuya App
+Tuya is chinese manufacturer which makes a lot of smarthome equipment. A lot of cheap smarthome equipment is based on Tuya devices. For example in the Netherlands devices from the Lidl and Action almost always use Tuya Devices exclusively. The Lidl and Action smarthome apps are also based on the Tuya App.
 
 ### Tuya chips
 
-Quite a while ago Tuya devices switched from using ESP based chips to their own produced chips. This makes it impossible to flash existing devices with for example an ESPHome solution. Instead of just changing the chip, this post aims to get to a solution without changing any hardware or firmware and controlling the existing Tuya firmware from software locally without a cloud solution
+Quite a while ago Tuya devices switched from using ESP based chips to their own produced chips. This makes it impossible to flash existing devices with for example an ESPHome solution. Instead of just changing the chip, this post aims to get to a solution without changing any hardware or firmware and controlling the existing Tuya firmware from software locally without a cloud solution.
 
 ## Node-RED
 Node-RED is a node based node based programming tool which works with topic and messages. More information can be found [here](https://community.home-assistant.io/t/home-assistant-community-add-on-node-red/55023)
-
-## Why this guide
-A long time ago, once close to christmas I bought LSC chirstmas ligths in the hope I could connect them to my Home Assistant installation, however this turned out to be quite challenging. I have compiled everything I learned from that experience in this guide and used the christmas lights as an example.
 
 ## Local Tuya/ Tuya intergration
 
@@ -128,7 +127,7 @@ device.set_version(TUYA_VERSION)
 status = device.status()
 dps = device.detect_available_dps() 
 print('Device status: %r\n' % data)
-print('DPS Availible: %r\n' % data))
+print('DPS Availible: %r\n' % data)
 
 ```
 This script is also available from my github page. ....
@@ -204,6 +203,10 @@ The tuya node requires the `Device ID` or `IP Address` and the `Local Key` from 
 
 ## Example 
 The flow for my christmas lights can be found on my github page [here]()
+
+My Flow looks like this:
+
+![Christmas Lights Flow](./Pics/Flow.png)
 
 A brief explanation for my christmas lights is as follows:
 
