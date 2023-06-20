@@ -262,9 +262,9 @@ At the top some bitmasks are seen. These bitmasks are set depending on the data 
 If you want a deeper dive into the code it can be found on my github page. Note that I will probably be updating the code over the following weeks to tweak some things here and there.
 
 ## Youtube Videos
-I Have posted some unlisted youtube videos of it working:
+I Have posted some unlisted youtube videos of it working:\
 [Changing the color of the traffic light](https://www.youtube.com/watch?v=O5E9kfEw_Kc)
-[Video 2]()
+[Counting the number of times the fridge opens](https://www.youtube.com/watch?v=HBZ4pNwl3gA)
 
 
 # LoRa Spectrum and Legality
