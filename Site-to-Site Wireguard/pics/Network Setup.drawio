@@ -1,0 +1,61 @@
+<mxfile host="app.diagrams.net" modified="2023-06-20T11:38:10.888Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="MAs2Ekwz20XxFg-13MRb" version="21.3.7" type="device">
+  <diagram name="Page-1" id="tL3k1rBwLL6n4xR-DngB">
+    <mxGraphModel dx="2074" dy="1057" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="bYkZXvhzPBWk2hTcwRAp-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;curved=1;endArrow=none;endFill=0;strokeWidth=2;" edge="1" parent="1" source="bYkZXvhzPBWk2hTcwRAp-1" target="bYkZXvhzPBWk2hTcwRAp-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bYkZXvhzPBWk2hTcwRAp-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;curved=1;endArrow=none;endFill=0;strokeWidth=2;" edge="1" parent="1" source="bYkZXvhzPBWk2hTcwRAp-1" target="bYkZXvhzPBWk2hTcwRAp-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bYkZXvhzPBWk2hTcwRAp-1" value="ISP Router&lt;br&gt;192.168.2.1&lt;br&gt;&lt;br&gt;No connection to &lt;br&gt;other routers" style="image;html=1;image=img/lib/clip_art/networking/Wireless_Router_128x128.png" vertex="1" parent="1">
+          <mxGeometry x="440" y="441.38" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="bYkZXvhzPBWk2hTcwRAp-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;endArrow=none;endFill=0;strokeWidth=2;" edge="1" parent="1" source="bYkZXvhzPBWk2hTcwRAp-2" target="bYkZXvhzPBWk2hTcwRAp-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bYkZXvhzPBWk2hTcwRAp-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1.009;entryY=0.469;entryDx=0;entryDy=0;entryPerimeter=0;curved=1;endArrow=none;endFill=0;strokeWidth=2;" edge="1" parent="1" source="bYkZXvhzPBWk2hTcwRAp-2" target="bYkZXvhzPBWk2hTcwRAp-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bYkZXvhzPBWk2hTcwRAp-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1.009;entryY=0.599;entryDx=0;entryDy=0;entryPerimeter=0;curved=1;endArrow=none;endFill=0;strokeWidth=2;" edge="1" parent="1" source="bYkZXvhzPBWk2hTcwRAp-2" target="bYkZXvhzPBWk2hTcwRAp-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bYkZXvhzPBWk2hTcwRAp-2" value="OpenWRT Router 1&lt;br&gt;192.168.9.1&lt;br&gt;&lt;br&gt;Home Address/DHCP:&lt;br&gt;192.168.1.1" style="image;html=1;image=img/lib/clip_art/networking/Wireless_Router_128x128.png" vertex="1" parent="1">
+          <mxGeometry x="110" y="441.38" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="bYkZXvhzPBWk2hTcwRAp-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=-0.022;entryY=0.405;entryDx=0;entryDy=0;entryPerimeter=0;curved=1;endArrow=none;endFill=0;strokeWidth=2;" edge="1" parent="1" source="bYkZXvhzPBWk2hTcwRAp-3" target="bYkZXvhzPBWk2hTcwRAp-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bYkZXvhzPBWk2hTcwRAp-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;curved=1;endArrow=none;endFill=0;strokeWidth=2;" edge="1" parent="1" source="bYkZXvhzPBWk2hTcwRAp-3" target="bYkZXvhzPBWk2hTcwRAp-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bYkZXvhzPBWk2hTcwRAp-3" value="OpenWRT Router 2&lt;br&gt;192.168.9.2&lt;br&gt;&lt;br&gt;Home Address/DHCP&lt;br&gt;192.168.3.1" style="image;html=1;image=img/lib/clip_art/networking/Wireless_Router_128x128.png" vertex="1" parent="1">
+          <mxGeometry x="595" y="300" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="bYkZXvhzPBWk2hTcwRAp-5" value="Device 1&lt;br&gt;192.168.1.2" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Personal_Computer.svg;" vertex="1" parent="1">
+          <mxGeometry x="20" y="370" width="45.6" height="61.800000000000004" as="geometry" />
+        </mxCell>
+        <mxCell id="bYkZXvhzPBWk2hTcwRAp-6" value="Device 2&lt;br&gt;192.168.1.3" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Personal_Computer.svg;" vertex="1" parent="1">
+          <mxGeometry x="20" y="530" width="45.6" height="61.800000000000004" as="geometry" />
+        </mxCell>
+        <mxCell id="bYkZXvhzPBWk2hTcwRAp-7" value="A Device&amp;nbsp;&lt;br&gt;192.168.2.xxx" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Personal_Computer.svg;" vertex="1" parent="1">
+          <mxGeometry x="595" y="521.38" width="45.6" height="61.800000000000004" as="geometry" />
+        </mxCell>
+        <mxCell id="bYkZXvhzPBWk2hTcwRAp-8" value="Device 1:&lt;br&gt;192.168.3.2" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Personal_Computer.svg;" vertex="1" parent="1">
+          <mxGeometry x="740" y="240" width="45.6" height="61.800000000000004" as="geometry" />
+        </mxCell>
+        <mxCell id="bYkZXvhzPBWk2hTcwRAp-9" value="Device 2:&lt;br&gt;192.168.3.3" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Personal_Computer.svg;" vertex="1" parent="1">
+          <mxGeometry x="740" y="370" width="45.6" height="61.800000000000004" as="geometry" />
+        </mxCell>
+        <mxCell id="bYkZXvhzPBWk2hTcwRAp-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;strokeWidth=2;endArrow=none;endFill=0;" edge="1" parent="1" source="bYkZXvhzPBWk2hTcwRAp-12" target="bYkZXvhzPBWk2hTcwRAp-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bYkZXvhzPBWk2hTcwRAp-12" value="Internet" style="image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;spacingTop=3;image=img/lib/active_directory/internet_cloud.svg;" vertex="1" parent="1">
+          <mxGeometry x="260" y="450" width="99.6" height="62.75" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

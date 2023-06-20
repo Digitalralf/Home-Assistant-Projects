@@ -130,7 +130,7 @@ print('Device status: %r\n' % data)
 print('DPS Availible: %r\n' % data)
 
 ```
-This script is also available from my github page. ....
+This script is also available from my github page [here](https://github.com/Digitalralf/Home-Assistant-Projects/blob/main/Node-Red%20Tuya%20Devices/Python%20Scrips/getInfo.py)
 
 To get datapoints from the device do the following:
 
@@ -202,7 +202,7 @@ The state node requires the virtual device entity to which should be filled in t
 The tuya node requires the `Device ID` or `IP Address` and the `Local Key` from earlier.
 
 ## Example 
-The flow for my christmas lights can be found on my github page [here]()
+The flow for my christmas lights can be found on my github page [here](https://github.com/Digitalralf/Home-Assistant-Projects/blob/main/Node-Red%20Tuya%20Devices/Node-Red%20Flow/Christmas_Lights.json)
 
 My Flow looks like this:
 
