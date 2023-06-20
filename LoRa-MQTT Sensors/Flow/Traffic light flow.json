@@ -1,0 +1,345 @@
+[
+    {
+        "id": "d3d17f159b59e819",
+        "type": "tab",
+        "label": "Stoplight",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "cfdaad958a3b6c7d",
+        "type": "trigger-state",
+        "z": "d3d17f159b59e819",
+        "name": "Stoplicht Entity",
+        "server": "f6c9ee5f.52efe",
+        "version": 2,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityid": "light.virtual_sociale_leven_stoplicht",
+        "entityidfiltertype": "exact",
+        "debugenabled": false,
+        "constraints": [
+            {
+                "targetType": "this_entity",
+                "targetValue": "",
+                "propertyType": "current_state",
+                "propertyValue": "new_state.state",
+                "comparatorType": "is",
+                "comparatorValueDatatype": "str",
+                "comparatorValue": ""
+            }
+        ],
+        "inputs": 0,
+        "outputs": 2,
+        "customoutputs": [],
+        "outputinitially": false,
+        "state_type": "str",
+        "enableInput": false,
+        "x": 120,
+        "y": 500,
+        "wires": [
+            [],
+            [
+                "e01ada1db87c831c",
+                "2f56b5d85f49e5f3"
+            ]
+        ]
+    },
+    {
+        "id": "e8a99e1012263c02",
+        "type": "mqtt out",
+        "z": "d3d17f159b59e819",
+        "name": "",
+        "topic": "stoplight/status",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "79833d13b979ecfe",
+        "x": 720,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "cbea956f7b4a6f30",
+        "type": "debug",
+        "z": "d3d17f159b59e819",
+        "name": "debug 2",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 300,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "90944157ba6256f3",
+        "type": "debug",
+        "z": "d3d17f159b59e819",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "2f56b5d85f49e5f3",
+        "type": "debug",
+        "z": "d3d17f159b59e819",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "data.event.new_state.attributes.rgb_color",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 320,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "e01ada1db87c831c",
+        "type": "function",
+        "z": "d3d17f159b59e819",
+        "name": "function 1",
+        "func": "var payloadData =\n{\n    state: msg.payload,\n    mode: msg.data.event.new_state.attributes.effect,\n    red:false,\n    green:false,\n    yellow:false,\n}\nvar redcolorData\n//blue is used for yellow\nvar bluecolorData\nvar greencolorData\nif(msg.payload == \"on\")\n{\n    redcolorData = msg.data.event.new_state.attributes.rgb_color[0]\n    greencolorData = msg.data.event.new_state.attributes.rgb_color[1]\n    bluecolorData = msg.data.event.new_state.attributes.rgb_color[2]\n    \n    if(redcolorData > 200)\n    {\n        payloadData.red = true;\n    }\n    if (bluecolorData > 200) {\n        payloadData.yellow = true;\n    }\n    if (greencolorData > 200) {\n        payloadData.green = true;\n    }\n}\n// var myMessage = \n// {\n//     stoplight:\n//     {\n//         status:payloadData\n//     }\n// }\n\nmsg.payload = payloadData;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 500,
+        "wires": [
+            [
+                "90944157ba6256f3",
+                "e8a99e1012263c02"
+            ]
+        ]
+    },
+    {
+        "id": "267d0dedf6399ac2",
+        "type": "mqtt in",
+        "z": "d3d17f159b59e819",
+        "name": "",
+        "topic": "koelkast/status",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "79833d13b979ecfe",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 120,
+        "y": 360,
+        "wires": [
+            [
+                "ce8d952f.18666",
+                "cbea956f7b4a6f30"
+            ]
+        ]
+    },
+    {
+        "id": "b7ab3ab0c1ac6493",
+        "type": "api-call-service",
+        "z": "d3d17f159b59e819",
+        "name": "Koelkast sensor",
+        "server": "f6c9ee5f.52efe",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "virtual",
+        "service": "set",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "sensor.virtual_sociale_leven_koelkast"
+        ],
+        "data": "{\"value\":msg.count}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 720,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fda0a334.bc9588",
+        "type": "inject",
+        "z": "d3d17f159b59e819",
+        "name": "reset",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 09 * * *",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 420,
+        "wires": [
+            [
+                "17cce981.975686"
+            ]
+        ]
+    },
+    {
+        "id": "ce8d952f.18666",
+        "type": "function",
+        "z": "d3d17f159b59e819",
+        "name": "msg object",
+        "func": "msg.increment = 1;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 360,
+        "wires": [
+            [
+                "ac65bf94.6e609"
+            ]
+        ]
+    },
+    {
+        "id": "17cce981.975686",
+        "type": "function",
+        "z": "d3d17f159b59e819",
+        "name": "msg object",
+        "func": "msg.reset = true;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 420,
+        "wires": [
+            [
+                "ac65bf94.6e609"
+            ]
+        ]
+    },
+    {
+        "id": "ac65bf94.6e609",
+        "type": "counter",
+        "z": "d3d17f159b59e819",
+        "name": "",
+        "init": "0",
+        "step": 1,
+        "lower": "",
+        "upper": "",
+        "mode": "increment",
+        "outputs": "1",
+        "x": 520,
+        "y": 380,
+        "wires": [
+            [
+                "988afc3c.a08f98",
+                "b7ab3ab0c1ac6493"
+            ]
+        ]
+    },
+    {
+        "id": "988afc3c.a08f98",
+        "type": "debug",
+        "z": "d3d17f159b59e819",
+        "name": "message",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 700,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "f6c9ee5f.52efe",
+        "type": "server",
+        "name": "Home Assistant",
+        "version": 5,
+        "addon": true,
+        "rejectUnauthorizedCerts": true,
+        "ha_boolean": "y|yes|true|on|home|open",
+        "connectionDelay": true,
+        "cacheJson": true,
+        "heartbeat": false,
+        "heartbeatInterval": 30,
+        "areaSelector": "friendlyName",
+        "deviceSelector": "friendlyName",
+        "entitySelector": "friendlyName",
+        "statusSeparator": "at: ",
+        "statusYear": "hidden",
+        "statusMonth": "short",
+        "statusDay": "numeric",
+        "statusHourCycle": "h23",
+        "statusTimeFormat": "h:m",
+        "enableGlobalContextStore": true
+    },
+    {
+        "id": "79833d13b979ecfe",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]

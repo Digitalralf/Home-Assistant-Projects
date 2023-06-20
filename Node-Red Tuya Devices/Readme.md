@@ -1,6 +1,6 @@
 # Controlling Tuya devices locally using Node-Red
 
-This post is written as part of an assignment for the HAN University of Applied Sciences. This is also part of a few other guides I am posting.
+This post is written as part of an assignment for the HAN University of Applied Sciences. This is also part of a few other projects I am posting.
 Other guides can be found here:\
 Two Zigbee Networks Joined over a wireguard VPN: `TBD`\
 Connecting long range sensors using LoRa and MQTT:`TBD`
