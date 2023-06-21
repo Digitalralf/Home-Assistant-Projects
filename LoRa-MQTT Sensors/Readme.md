@@ -42,6 +42,9 @@ The traffic light itself looks like this and is a leftover from a carnavals proj
 There are two relays to switch live and neutral wires per light. So there are six relays in total. The Red light has inverted logic because that is light that is almost always on since the fridge is closed most of the time. This is so that there is the least amount of wear on the relays since they are off in a default state.
 The relays are controlled using BJT transistors. There are debugging LED's on the board for programming the board if it is removed from the traffic light.
 
+The relays are controlled in a similair way to this schematic:
+
+<img src="https://www.electronics-tutorials.ws/wp-content/uploads/2018/05/articles-switch1.gif" alt="relay circuit" width="50%" height ="50%">
 This meant that the board was almost ready. Only the pins for it had to be mapped to appropriate pins on the LilyGo.\
 The pinout for this was changed as follows:
 
