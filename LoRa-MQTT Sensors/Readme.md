@@ -22,27 +22,27 @@ I opted to buy two LilyGO TTGO T3 LoRa32 V1.6.1 ESP32 Modules. With some cheap a
 <img src="./pics/LILYGO-G511-01_1_-600x600.jpeg" alt="LilyGO TTGO T3 LoRa32 V1.6.1 ESP32 Module" width="50%" height ="50%">
 
 # The Project
-A few years ago I made a small joke project in where a traffic light was hooked up to fridge. When the fridge would open the traffic light would go to green and cycle back through orange and eventually to Red.
+A few years ago I made a small joke project in where a traffic light was hooked up to fridge. When the fridge would open the traffic light would go to green. When it closes it would cycle back through orange and eventually to Red.
 This was controlled by Arduino Nano which which would constantly read a digital pin to check if the fridge light was activated. If the fridge light turned on the pin would go high and the light would turn green.
 
 ## Hardware
-The Hardware consist of Node and Gateway.
+The Hardware consist of a Node and Gateway.
 
 ### The Node
 The Board that controlled the traffic light becomes the node and originally looked like this:\
 <img src="./pics/PXL_20230611_142327017.png" alt="Original board" width="50%" height ="50%">
 
-The traffic light itself lookss like this and is a leftover from a carnavals project a few years ago:\
+The traffic light itself looks like this and is a leftover from a carnavals project a few years ago:\
 <img src="./pics/Traffic_light_green.png" alt="Traffic_light_green" width="10%" height ="10%">
 <img src="./pics/Traffic_light_yellow.png" alt="Traffic_light_yellow" width="8.5%" height ="8.5%">
 <img src="./pics/Traffic_light_red.png" alt="Traffic_light_red" width="11%" height ="11%">
 
 
 
-There are two relays to switch live and neutral wires per light so six relays in total. The Red light has inverted logic because that is light that is almost always on since the fridge is closed most of the time so no relays are active.
-The relays are controlled using BJT transistors .There are debugging LED's on the board for programming the board if it is removed from the traffic light.
+There are two relays to switch live and neutral wires per light. So there are six relays in total. The Red light has inverted logic because that is light that is almost always on since the fridge is closed most of the time. This is so that there is the least amount of wear on the relays since they are off in a default state.
+The relays are controlled using BJT transistors. There are debugging LED's on the board for programming the board if it is removed from the traffic light.
 
-This meant that the board was almost ready only the pins for had to be mapped to appropriate pins on the LilyGo.\
+This meant that the board was almost ready. Only the pins for it had to be mapped to appropriate pins on the LilyGo.\
 The pinout for this was changed as follows:
 
 | **Function**          | **Arduino Nano Pin**       | **LilyGO Pin**    |
@@ -64,12 +64,12 @@ There are two pieces of different software written. The Node is in control of tr
 The Node can control the traffic light in three Modes: Manual, Automatic and Flicker
 ### Manual
 In the manual mode you can select a color from the Home Assistant color wheel. Green controls the green stoplight, red Controls the red stoplight, and blue controls the yellow stoplight.\
-The Rreason that blue is controlling the yellow light is so that there is finer control after all and there is no blue light in the traffic light so nothing goes to waist. It also easier to code since each light has its own value from `0` to `255`
-However the light are binary. This means that they either on or off. So I mapped that above `200` the light is `on` and below `200` the light is `off`
+The Reason that blue is controlling the yellow light is so that there is finer control after all. There is no blue light in the traffic light so nothing goes to waist. It also easier to code since each light has its own value from `0` to `255`
+However the lights are binary. This means that they either on or off. So I mapped that above `200` the light is `on` and below `200` the light is `off`
 ### Flicker
 Flicker is essentially the same as the manual mode only that the light flickers at the selected color with an interval of `1` second.
 ### Automatic
-The Automatic mode is the original function of the traffic light. This means when the fridge is opened it is turning the light green and when it closes it turns the light to orange and then red on an interval of `2` seconds.
+The Automatic mode is the original function of the traffic light. This means when the fridge is opened it turns green and when it closes it turns the light to orange and then red on an interval of `2` seconds.
 
 ### Counting how many times the fridge has opened
 Whenever the fridge is opened it stores it in ringbuffer. When the transmit interval occurs for LoRa it sends back a ping that the fridge has opened. This is then turned back into a MQTT message and registered by node red to the a virtual sensor.
