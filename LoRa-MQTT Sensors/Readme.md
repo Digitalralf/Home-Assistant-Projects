@@ -29,9 +29,15 @@ This was controlled by Arduino Nano which which would constantly read a digital 
 The Hardware consist of Node and Gateway.
 
 ### The Node
-The Board that controlled the traffic light becomes the node and originally looked like this:
-
+The Board that controlled the traffic light becomes the node and originally looked like this:\
 <img src="./pics/PXL_20230611_142327017.png" alt="Original board" width="50%" height ="50%">
+
+The traffic light itself lookss like this and is a leftover from a carnavals project a few years ago:\
+<img src="./pics/Traffic_light_green.png" alt="Traffic_light_green" width="10%" height ="10%">
+<img src="./pics/Traffic_light_yellow.png" alt="Traffic_light_yellow" width="8.5%" height ="8.5%">
+<img src="./pics/Traffic_light_red.png" alt="Traffic_light_red" width="11%" height ="11%">
+
+
 
 There are two relays to switch live and neutral wires per light so six relays in total. The Red light has inverted logic because that is light that is almost always on since the fridge is closed most of the time so no relays are active.
 The relays are controlled using BJT transistors .There are debugging LED's on the board for programming the board if it is removed from the traffic light.
@@ -263,7 +269,7 @@ If you want a deeper dive into the code it can be found on my github page. Note 
 
 ## Youtube Videos
 I Have posted some unlisted youtube videos of it working:\
-[Changing the color of the traffic light](https://www.youtube.com/watch?v=O5E9kfEw_Kc)
+[Changing the color of the traffic light](https://www.youtube.com/watch?v=O5E9kfEw_Kc)\
 [Counting the number of times the fridge opens](https://www.youtube.com/watch?v=HBZ4pNwl3gA)
 
 
