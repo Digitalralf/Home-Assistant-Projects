@@ -9,7 +9,7 @@ This guide presumes that you have some basic knowledge of using Home-Assistant a
 
 # Introduction
 Unlike the other posts I made. This isn't a guide but more of an exploration of what is possible. At this point with my Home-Assistant installation I could add Zigbee devices and Wi-Fi devices and sensors at my own studio and at my parents place which is connected through a VPN. However I couldn't put sensors in the yard of my parents or put a device at a long-range without an internet connection or Zigbee Signal from either gateways.\
-That is why I decided to explore with a Point to Point LoRa connection. I Have used used LoRaWAN with The Things Network, but neither my parents place or my own studio have very good coverage of TTN. So I bought to ESP32 modules with a SX1276 Lora chip and went coding.
+That is why I decided to explore with a Point to Point LoRa connection. I Have used used LoRaWAN with The Things Network, but neither my parents place or my own studio have very good coverage of TTN. So I bought two ESP32 modules with a SX1276 Lora chip and went coding.
 
 ## LoRa
 LoRa stands for Long Range and is specifically designed to send data over longer distances upto 5km. It is mostly used by LoRaWAN networks like the things network. More information on LoRa can be found [here](https://lora-alliance.org/) and more information on The Things Network can be found [Here](https://www.thethingsnetwork.org/)
@@ -19,7 +19,7 @@ The point of using LoRa is to get a longer range. So I wanted to see how far I c
 
 # Modules
 I opted to buy two LilyGO TTGO T3 LoRa32 V1.6.1 ESP32 Modules. With some cheap antenna's from amazon not for extended range but more for antenna placement.\
-<img src="./pics/LILYGO-G511-01_1_-600x600.jpeg" alt="LilyGO TTGO T3 LoRa32 V1.6.1 ESP32 Module" width="20%" height ="20%">
+<img src="./pics/LILYGO-G511-01_1_-600x600.jpeg" alt="LilyGO TTGO T3 LoRa32 V1.6.1 ESP32 Module" width="50%" height ="50%">
 
 # The Project
 A few years ago I made a small joke project in where a traffic light was hooked up to fridge. When the fridge would open the traffic light would go to green and cycle back through orange and eventually to Red.
@@ -31,7 +31,7 @@ The Hardware consist of Node and Gateway.
 ### The Node
 The Board that controlled the traffic light becomes the node and originally looked like this:
 
-<img src="./pics/PXL_20230611_142327017.png" alt="Original board" width="20%" height ="20%">
+<img src="./pics/PXL_20230611_142327017.png" alt="Original board" width="50%" height ="50%">
 
 There are two relays to switch live and neutral wires per light so six relays in total. The Red light has inverted logic because that is light that is almost always on since the fridge is closed most of the time so no relays are active.
 The relays are controlled using BJT transistors .There are debugging LED's on the board for programming the board if it is removed from the traffic light.
@@ -47,7 +47,7 @@ The pinout for this was changed as follows:
 | Fridge Read Pin       | A2                         | GPIO2             |
 
 After some more soldering with protoboard it looked like this:\
-<img src="./pics/PXL_20230611_192514070.png" alt="Adjusted board" width="20%" height ="20%">
+<img src="./pics/PXL_20230611_192514070.png" alt="Adjusted board" width="50%" height ="50%">
 
 ### The Gateway
 The Gateway is just the LilyGo module described earlier that is connected to a Wifi Network.
@@ -95,7 +95,7 @@ The config for the virtual sensor looks like this:
   unit_of_measurement: "x Opened"
 ```
 From here I created Node-Red Flow:\
-<img src="./pics/Node-RED_Flow.png" alt="Node-RED flow" width="30%" height ="30%">\
+<img src="./pics/Node-RED_Flow.png" alt="Node-RED flow" width="50%" height ="50%">\
 This flow can be found in my github [here](https://github.com/Digitalralf/Home-Assistant-Projects/blob/main/LoRa-MQTT%20Sensors/Flow/Traffic%20light%20flow.json)
 
 For example if I set it to the mode to manual and choose green as a color it sends the following JSON:
